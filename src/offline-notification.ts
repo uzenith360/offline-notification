@@ -8,9 +8,9 @@ if (!(process as unknown as { browser: boolean }).browser) {
         body: { appendChild: (node) => undefined } as Element,
     };
 
-    var window = { 
-        navigator: { onLine: false }, 
-        addEventListener: (event: string, a: () => void) => { } 
+    var window = {
+        navigator: { onLine: false },
+        addEventListener: (event: string, a: () => void) => { }
     } as Window & typeof globalThis;
 }
 
@@ -19,7 +19,7 @@ import EventEmitter from "./event-emitter";
 export default class OfflineNotification {
     private static instance: OfflineNotification;
     private static notificationElement: HTMLDivElement;
-    private static styleElement: HTMLStyleElement|Element;
+    private static styleElement: HTMLStyleElement | Element;
     private isInit: boolean = false;
     private readonly onlineEvent: EventEmitter = new EventEmitter('online');
     private readonly offlineEvent: EventEmitter = new EventEmitter('offline');
