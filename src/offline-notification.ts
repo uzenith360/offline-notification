@@ -24,8 +24,8 @@ export default class OfflineNotification {
     private static notificationElement: HTMLDivElement;
     private static styleElement: HTMLStyleElement | Element;
     private isInit: boolean = false;
-    private readonly onlineEvent: EventEmitter = new EventEmitter('online');
-    private readonly offlineEvent: EventEmitter = new EventEmitter('offline');
+    private readonly onlineEvent: EventEmitter;
+    private readonly offlineEvent: EventEmitter;
     private static readonly html: string = `<div class="mobileWidth desktopWidth"
     style="display:none; z-index: 99; padding-top: 1.3rem;padding-bottom: 1.3rem;color:#ffffff;background-color: rgb(217 119 6); border-color: rgb(180 83 9); border-width: 1px;padding-left: 1.5rem/* 24px */;padding-right: 1.5rem/* 24px */;right: 0px;bottom: 0px;position: fixed;">
       <div
@@ -54,6 +54,9 @@ export default class OfflineNotification {
   `;
 
     private constructor(private windowObject: Window = window) {
+        this.onlineEvent = new EventEmitter('online');
+        this.offlineEvent = new EventEmitter('offline');
+
         this.addStyle();
         this.addHTML();
 
@@ -64,13 +67,15 @@ export default class OfflineNotification {
         this.isInit = true;
     }
 
-    private onlineEventHandler(): void {console.log(this.onlineEvent)
+    private onlineEventHandler(): void {
+        console.log(this.onlineEvent)
         this.onlineEvent?.next();
 
         OfflineNotification.notificationElement.style.display = 'none';
     }
 
-    private offlineEventHandler(): void {console.log(this.onlineEvent)
+    private offlineEventHandler(): void {
+        console.log(this.onlineEvent)
         this.offlineEvent?.next();
 
         OfflineNotification.notificationElement.style.display = 'block';
