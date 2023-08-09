@@ -19,7 +19,7 @@ import EventEmitter from "./event-emitter";
 export default class OfflineNotification {
     private static instance: OfflineNotification;
     private static notificationElement: HTMLDivElement;
-    private static styleElement: /*HTMLStyleElement*/Element;
+    private static styleElement: HTMLStyleElement|Element;
     private isInit: boolean = false;
     private readonly onlineEvent: EventEmitter = new EventEmitter('online');
     private readonly offlineEvent: EventEmitter = new EventEmitter('offline');
