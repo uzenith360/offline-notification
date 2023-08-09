@@ -10,6 +10,7 @@ try {
         };
 
         var window = {
+            document: document as unknown,
             navigator: { onLine: false },
             addEventListener: (event: string, a: () => void) => { }
         } as Window & typeof globalThis;
@@ -99,13 +100,13 @@ export default class OfflineNotification {
             return;
         }
 
-        const rootDiv: HTMLDivElement = document.createElement('div') as HTMLDivElement;
+        const rootDiv: HTMLDivElement = window.document.createElement('div') as HTMLDivElement;
 
         rootDiv.innerHTML = OfflineNotification.html;
 
         OfflineNotification.notificationElement = rootDiv.firstElementChild as HTMLDivElement;
 
-        document.body.appendChild(OfflineNotification.notificationElement);
+        window.document.body.appendChild(OfflineNotification.notificationElement);
     }
 
     /**
@@ -116,10 +117,10 @@ export default class OfflineNotification {
             return;
         }
 
-        const newStyle: HTMLDivElement = document.createElement('style') as HTMLDivElement;
+        const newStyle: HTMLStyleElement = window.document.createElement('style') as HTMLStyleElement;
         newStyle.innerHTML = OfflineNotification.style;
 
-        const existingLink = document.getElementsByTagName("link")[0];
+        const existingLink = window.document.getElementsByTagName("link")[0];
 
         existingLink.parentNode?.insertBefore(newStyle, existingLink);
 
