@@ -1,18 +1,20 @@
 /// <reference lib="dom" />
 
-// Monkeypatching dom cos of tests
-if (!(process as unknown as { browser: boolean }).browser) {
-    var document = {
-        createElement: (tag: string) => ({ firstElementChild: { style: { display: '' } } as unknown as HTMLDivElement } as unknown as HTMLDivElement),
-        getElementsByTagName: (tag: string) => [{} as Element],
-        body: { appendChild: (node) => undefined } as Element,
-    };
+try {
+    // Monkeypatching dom cos of tests
+    if (!(process as unknown as { browser: boolean }).browser) {
+        var document = {
+            createElement: (tag: string) => ({ firstElementChild: { style: { display: '' } } as unknown as HTMLDivElement } as unknown as HTMLDivElement),
+            getElementsByTagName: (tag: string) => [{} as Element],
+            body: { appendChild: (node) => undefined } as Element,
+        };
 
-    var window = {
-        navigator: { onLine: false },
-        addEventListener: (event: string, a: () => void) => { }
-    } as Window & typeof globalThis;
-}
+        var window = {
+            navigator: { onLine: false },
+            addEventListener: (event: string, a: () => void) => { }
+        } as Window & typeof globalThis;
+    }
+} catch (e) { }
 
 import EventEmitter from "./event-emitter";
 
