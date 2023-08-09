@@ -65,13 +65,13 @@ export default class OfflineNotification {
     }
 
     private onlineEventHandler(): void {
-        this.onlineEvent.next();
+        this.onlineEvent?.next();
 
         OfflineNotification.notificationElement.style.display = 'none';
     }
 
     private offlineEventHandler(): void {
-        this.offlineEvent.next();
+        this.offlineEvent?.next();
 
         OfflineNotification.notificationElement.style.display = 'block';
     }

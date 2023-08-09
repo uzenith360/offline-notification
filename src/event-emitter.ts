@@ -1,5 +1,5 @@
 export default class EventEmitter {
-    private target: EventTarget = new EventTarget();
+    private readonly target: EventTarget = new EventTarget();
 
     constructor(private eventName: string) {}
 
