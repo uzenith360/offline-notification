@@ -1,3 +1,10 @@
+## [1.0.12](https://github.com/uzenith360/offline-notification/compare/v1.0.11...v1.0.12) (2023-08-09)
+
+
+### Bug Fixes
+
+* updates and issues ([a78aa6d](https://github.com/uzenith360/offline-notification/commit/a78aa6d7eaf0d2e1ec2bb5e46ccb82edd5c9a342))
+
 ## [1.0.11](https://github.com/uzenith360/offline-notification/compare/v1.0.10...v1.0.11) (2023-08-09)
 
 
