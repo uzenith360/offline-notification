@@ -26,8 +26,8 @@ export default class OfflineNotification {
     private isInit: boolean = false;
     private readonly onlineEvent: EventEmitter = new EventEmitter('online');
     private readonly offlineEvent: EventEmitter = new EventEmitter('offline');
-    private static readonly html: string = `<div class="w-full md:max-w-sm"
-    style="display:none; padding-top: 0.75rem;padding-bottom: 0.75rem;color:#ffffff;background-color: rgb(217 119 6); border-color: rgb(180 83 9); border-width: 1px;padding-left: 1.5rem/* 24px */;padding-right: 1.5rem/* 24px */;right: 0px;bottom: 0px;position: fixed;">
+    private static readonly html: string = `<div class="mobileWidth desktopWidth"
+    style="display:none; z-index: 99; padding-top: 0.75rem;padding-bottom: 0.75rem;color:#ffffff;background-color: rgb(217 119 6); border-color: rgb(180 83 9); border-width: 1px;padding-left: 1.5rem/* 24px */;padding-right: 1.5rem/* 24px */;right: 0px;bottom: 0px;position: fixed;">
       <div
       style="display: flex;justify-content: space-between;column-gap: 1.5rem;">
         <div>
@@ -44,18 +44,18 @@ export default class OfflineNotification {
       </div>
     </div>`;
     private static readonly style: string = `
-    .w-full {
+    .mobileWidth {
       width: 100%;
     }
     @media (min-width: 768px) {
-      .md:max-w-sm {
+      .desktopWidth {
           max-width: 24rem/* 384px */;
       }
   `;
 
     private constructor(private windowObject: Window = window) {
-        this.addHTML();
         this.addStyle();
+        this.addHTML();
 
         OfflineNotification.notificationElement.style.display = this.isOnline ? 'none' : 'block';
 
