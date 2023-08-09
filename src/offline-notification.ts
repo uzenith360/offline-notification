@@ -140,12 +140,12 @@ export default class OfflineNotification {
         // remove listeners
         this.windowObject.removeEventListener(
             'online',
-            this.onlineEventHandler,
+            this.onlineEventHandler.bind(this),
         );
 
         this.windowObject.removeEventListener(
             'offline',
-            this.offlineEventHandler,
+            this.offlineEventHandler.bind(this),
         );
 
         // remove elements
