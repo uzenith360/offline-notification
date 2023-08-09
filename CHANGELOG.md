@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/uzenith360/offline-notification/compare/v1.0.0...v1.0.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* process reference error on the browser ([1b9706f](https://github.com/uzenith360/offline-notification/commit/1b9706fe283c7de28de19e1cb0d602ca8b18fdf6))
+
 # 1.0.0 (2023-08-09)
 
 
