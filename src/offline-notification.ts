@@ -53,7 +53,7 @@ export default class OfflineNotification {
       }
   `;
 
-    private constructor() {
+    private constructor(private windowObject: Window = window) {
         this.addHTML();
         this.addStyle();
 
@@ -81,12 +81,12 @@ export default class OfflineNotification {
             return;
         }
 
-        window.addEventListener(
+        this.windowObject.addEventListener(
             'online',
             this.onlineEventHandler,
         );
 
-        window.addEventListener(
+        this.windowObject.addEventListener(
             'offline',
             this.offlineEventHandler,
         );
@@ -100,13 +100,13 @@ export default class OfflineNotification {
             return;
         }
 
-        const rootDiv: HTMLDivElement = window.document.createElement('div') as HTMLDivElement;
+        const rootDiv: HTMLDivElement = this.windowObject.document.createElement('div') as HTMLDivElement;
 
         rootDiv.innerHTML = OfflineNotification.html;
 
         OfflineNotification.notificationElement = rootDiv.firstElementChild as HTMLDivElement;
 
-        window.document.body.appendChild(OfflineNotification.notificationElement);
+        this.windowObject.document.body.appendChild(OfflineNotification.notificationElement);
     }
 
     /**
@@ -117,10 +117,10 @@ export default class OfflineNotification {
             return;
         }
 
-        const newStyle: HTMLStyleElement = window.document.createElement('style') as HTMLStyleElement;
+        const newStyle: HTMLStyleElement = this.windowObject.document.createElement('style') as HTMLStyleElement;
         newStyle.innerHTML = OfflineNotification.style;
 
-        const existingLink = window.document.getElementsByTagName("link")[0];
+        const existingLink = this.windowObject.document.getElementsByTagName("link")[0];
 
         existingLink.parentNode?.insertBefore(newStyle, existingLink);
 
@@ -138,12 +138,12 @@ export default class OfflineNotification {
 
     public destroy(): void {
         // remove listeners
-        window.removeEventListener(
+        this.windowObject.removeEventListener(
             'online',
             this.onlineEventHandler,
         );
 
-        window.removeEventListener(
+        this.windowObject.removeEventListener(
             'offline',
             this.offlineEventHandler,
         );
@@ -153,15 +153,15 @@ export default class OfflineNotification {
         OfflineNotification.styleElement.parentNode?.removeChild(OfflineNotification.styleElement);
     }
 
-    static getInstance(): OfflineNotification {
+    static getInstance(window?: Window): OfflineNotification {
         if (!OfflineNotification.instance) {
-            OfflineNotification.instance = new OfflineNotification();
+            OfflineNotification.instance = new OfflineNotification(window);
         }
 
         return OfflineNotification.instance;
     }
 
     public get isOnline(): boolean {
-        return window.navigator.onLine;
+        return this.windowObject.navigator.onLine;
     }
 }
