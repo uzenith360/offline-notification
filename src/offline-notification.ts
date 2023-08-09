@@ -27,9 +27,9 @@ export default class OfflineNotification {
     private readonly onlineEvent: EventEmitter = new EventEmitter('online');
     private readonly offlineEvent: EventEmitter = new EventEmitter('offline');
     private static readonly html: string = `<div class="mobileWidth desktopWidth"
-    style="display:none; z-index: 99; padding-top: 1.5rem;padding-bottom: 1.5rem;color:#ffffff;background-color: rgb(217 119 6); border-color: rgb(180 83 9); border-width: 1px;padding-left: 1.5rem/* 24px */;padding-right: 1.5rem/* 24px */;right: 0px;bottom: 0px;position: fixed;">
+    style="display:none; z-index: 99; padding-top: 1.3rem;padding-bottom: 1.3rem;color:#ffffff;background-color: rgb(217 119 6); border-color: rgb(180 83 9); border-width: 1px;padding-left: 1.5rem/* 24px */;padding-right: 1.5rem/* 24px */;right: 0px;bottom: 0px;position: fixed;">
       <div
-      style="display: flex;justify-content: space-between;column-gap: 1.5rem;">
+      style="display: flex;justify-content: space-between;">
         <div>
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="40" height="40" viewBox="0 0 256 256" xml:space="preserve">
     
