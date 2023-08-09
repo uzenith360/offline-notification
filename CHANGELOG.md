@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/uzenith360/offline-notification/compare/v1.0.1...v1.0.2) (2023-08-09)
+
+
+### Bug Fixes
+
+* document reference error on the browser ([4563003](https://github.com/uzenith360/offline-notification/commit/45630039e47c127977142afeb7b54c797335f423))
+
 ## [1.0.1](https://github.com/uzenith360/offline-notification/compare/v1.0.0...v1.0.1) (2023-08-09)
 
 
