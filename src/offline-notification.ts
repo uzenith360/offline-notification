@@ -24,7 +24,7 @@ export default class OfflineNotification {
     private static notificationElement: HTMLDivElement;
     private static styleElement: HTMLStyleElement | Element;
     private isInit: boolean = false;
-    private _isOnline: boolean = this.windowObject.navigator.onLine;
+    private _isOnline: boolean;
     private readonly onlineEvent: EventEmitter = new EventEmitter('online');
     private readonly offlineEvent: EventEmitter = new EventEmitter('offline');
     private static readonly html: string = `<div class="mobileWidth desktopWidth"
@@ -58,6 +58,7 @@ export default class OfflineNotification {
         this.addStyle();
         this.addHTML();
 
+        this._isOnline = this.windowObject.navigator.onLine;
         OfflineNotification.notificationElement.style.display = this.isOnline ? 'none' : 'block';
 
         this.addListeners();
