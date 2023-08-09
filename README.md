@@ -1,4 +1,4 @@
-# ngx-offline-notification
+# offline-notification
 
 A library the shows a notification when the network is offline
 
