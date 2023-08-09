@@ -24,6 +24,7 @@ export default class OfflineNotification {
     private static notificationElement: HTMLDivElement;
     private static styleElement: HTMLStyleElement | Element;
     private isInit: boolean = false;
+    private _isOnline: boolean = this.windowObject.navigator.onLine;
     private readonly onlineEvent: EventEmitter = new EventEmitter('online');
     private readonly offlineEvent: EventEmitter = new EventEmitter('offline');
     private static readonly html: string = `<div class="mobileWidth desktopWidth"
@@ -65,12 +66,16 @@ export default class OfflineNotification {
     }
 
     private onlineEventHandler(): void {
+        this._isOnline = true;
+
         this.onlineEvent.next();
 
         OfflineNotification.notificationElement.style.display = 'none';
     }
 
     private offlineEventHandler(): void {
+        this._isOnline = false;
+
         this.offlineEvent.next();
 
         OfflineNotification.notificationElement.style.display = 'block';
@@ -130,9 +135,9 @@ export default class OfflineNotification {
     public subscribe(event: 'online' | 'offline', handler: () => void): { unsubscribe: () => void } {
         switch (event) {
             case 'offline':
-                return this.onlineEvent.subscribe(handler);
-            case 'online':
                 return this.offlineEvent.subscribe(handler);
+            case 'online':
+                return this.onlineEvent.subscribe(handler);
         }
     }
 
@@ -140,12 +145,12 @@ export default class OfflineNotification {
         // remove listeners
         this.windowObject.removeEventListener(
             'online',
-            this.onlineEventHandler.bind(this),
+            this.onlineEventHandler/*.bind(this)*/,
         );
 
         this.windowObject.removeEventListener(
             'offline',
-            this.offlineEventHandler.bind(this),
+            this.offlineEventHandler/*.bind(this)*/,
         );
 
         // remove elements
@@ -162,6 +167,10 @@ export default class OfflineNotification {
     }
 
     public get isOnline(): boolean {
-        return this.windowObject.navigator.onLine;
+        return this._isOnline;
+    }
+
+    public set isOnline(isOnline: boolean) {
+        this._isOnline = isOnline;
     }
 }
