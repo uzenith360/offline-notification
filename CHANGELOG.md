@@ -1,3 +1,10 @@
+# 1.0.0 (2023-08-09)
+
+
+### Features
+
+* first commit ([b62c9b4](https://github.com/uzenith360/offline-notification/commit/b62c9b4b7c6c67061d8c54558a7bcaaace47cc49))
+
 # 1.0.0 (2023-01-31)
 
 
